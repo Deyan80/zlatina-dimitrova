@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zlatina Dimitrova — DJ &amp; Producer</title>
+<meta name="description" content="Zlatina Dimitrova — House DJ &amp; Producer. Tech House, Minimal Deep Tech, Jackin House.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Zlatina Dimitrova — DJ & Producer">
+<meta property="og:description" content="House DJ &amp; Producer driven by a passion for electronic music since 2006. Tech House • Minimal Deep Tech • Jackin House.">
+<meta property="og:image" content="dj-01.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1600">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Spartan:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#000000;
+    --bg-raised:#0d0d0d;
+    --bg-card:#141414;
+    --text:#ffffff;
+    --text-dim:#9a9a9a;
+    --accent:#bdbdbd;
+    --hair:#2a2a2a;
+    --serif-shadow: rgba(255,255,255,0.06);
+  }
+  html.light{
+    --bg:#f7f7f5;
+    --bg-raised:#ffffff;
+    --bg-card:#efefec;
+    --text:#0a0a0a;
+    --text-dim:#5c5c5c;
+    --accent:#6b6b6b;
+    --hair:#dcdcd8;
+    --serif-shadow: rgba(0,0,0,0.05);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Poppins',sans-serif;
+    font-weight:300;
+    transition:background .5s ease,color .5s ease;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--text); color:var(--bg); }
+
+  h1,h2,h3,.display{
+    font-family:'Bebas Neue','League Spartan',sans-serif;
+    font-weight:400;
+    letter-spacing:.03em;
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'League Spartan',sans-serif;
+    font-weight:600;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--accent);
+  }
+  a{color:inherit;}
+  .hair{ border:none; border-top:1px solid var(--hair); margin:0; }
+
+  /* ---------- controls ---------- */
+  .controls{
+    position:fixed;
+    top:22px; right:22px;
+    z-index:500;
+    display:flex; gap:10px;
+  }
+  .ctrl-btn{
+    font-family:'League Spartan',sans-serif;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--hair);
+    padding:9px 16px;
+    cursor:pointer;
+    backdrop-filter:blur(6px);
+    background:rgba(0,0,0,.15);
+    transition:all .25s ease;
+  }
+  html.light .ctrl-btn{ background:rgba(255,255,255,.4); }
+  .ctrl-btn:hover{ border-color:var(--text); }
+  .ctrl-btn:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  /* ---------- section shell ---------- */
+  .chapter{
+    position:relative;
+    max-width:1180px;
+    margin:0 auto;
+    padding:120px 32px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:56px;
+  }
+  .chapter .num{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:15vw;
+    line-height:.75;
+    color:transparent;
+    -webkit-text-stroke:1px var(--hair);
+    position:absolute;
+    top:40px; left:0;
+    pointer-events:none;
+    z-index:0;
+    user-select:none;
+  }
+  .chapter-inner{ position:relative; z-index:1; }
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .two-col.reverse .photo-col{ order:2; }
+  .two-col.reverse .text-col{ order:1; }
+
+  /* fade-in on scroll */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- photo frame — full image, uncropped, clickable ---------- */
+  .photo-col{ display:flex; justify-content:center; }
+  .photo-frame{
+    display:block;
+    width:100%;
+    max-width:420px;
+    cursor:zoom-in;
+    border:1px solid var(--hair);
+    background:var(--bg-card);
+    padding:10px;
+    transition:border-color .3s ease, transform .4s ease;
+  }
+  .photo-frame:hover{ border-color:var(--accent); transform:translateY(-4px); }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+  }
+
+  /* ---------- cover ---------- */
+  .cover{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 24px 80px;
+    position:relative;
+  }
+  .cover .photo-frame{ max-width:340px; margin-bottom:46px; }
+  .cover h1{
+    font-size:clamp(52px,11vw,140px);
+    line-height:.92;
+  }
+  .cover .tagline{
+    margin-top:22px;
+    font-family:'League Spartan',sans-serif;
+    font-weight:500;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .cover .genres{
+    margin-top:10px;
+    color:var(--accent);
+    font-family:'League Spartan',sans-serif;
+    letter-spacing:.15em;
+    font-size:12px;
+    text-transform:uppercase;
+  }
+  .scroll-cue{
+    position:absolute;
+    bottom:34px;
+    font-size:11px;
+    letter-spacing:.3em;
+    color:var(--text-dim);
+    text-transform:uppercase;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:.35;} 50%{opacity:1;} }
+  @media (prefers-reduced-motion: reduce){ .scroll-cue{ animation:none; } }
+
+  /* ---------- about ---------- */
+  .about p{ font-size:17px; line-height:1.85; color:var(--text-dim); font-weight:300; margin:0 0 18px; }
+  .about h2{ font-size:clamp(40px,6vw,64px); margin-bottom:26px; }
+
+  /* ---------- highlights ---------- */
+  .highlights h2{ font-size:clamp(40px,6vw,64px); margin-bottom:40px; }
+  .hl-list{ list-style:none; margin:0; padding:0; }
+  .hl-list li{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:24px;
+    padding:20px 0;
+    border-bottom:1px solid var(--hair);
+    font-weight:300;
+    font-size:16px;
+    color:var(--text-dim);
+    align-items:baseline;
+  }
+  .hl-list li span.mark{
+    font-family:'League Spartan',sans-serif;
+    color:var(--accent);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.1em;
+  }
+  .hl-list li strong{ color:var(--text); font-weight:500; }
+
+  /* ---------- releases ---------- */
+  .releases h2{ font-size:clamp(40px,6vw,64px); margin-bottom:40px; }
+  .release-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--hair); }
+  .release-card{
+    background:var(--bg);
+    padding:34px 30px;
+  }
+  .release-card .label{
+    font-family:'League Spartan',sans-serif;
+    color:var(--text-dim);
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+  }
+  .release-card h3{ font-size:32px; margin:10px 0 14px; }
+  .release-card .meta{ font-size:14px; color:var(--text-dim); line-height:1.8; }
+  .release-card .chip{
+    display:inline-block;
+    margin-top:14px;
+    font-family:'League Spartan',sans-serif;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    border:1px solid var(--hair);
+    padding:6px 12px;
+  }
+
+  /* ---------- performances ---------- */
+  .performances h2{ font-size:clamp(40px,6vw,64px); margin-bottom:20px; }
+  .performances p{ color:var(--text-dim); font-size:16px; line-height:1.8; max-width:520px; }
+  .perf-tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+  .perf-tags span{
+    font-family:'League Spartan',sans-serif;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    border:1px solid var(--hair);
+    padding:9px 16px;
+    color:var(--text-dim);
+  }
+
+  /* ---------- press photos gallery ---------- */
+  .gallery h2{ font-size:clamp(40px,6vw,64px); margin-bottom:40px; text-align:center; }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+  }
+  .gallery-grid .photo-frame{ max-width:none; padding:6px; }
+
+  /* ---------- music & socials ---------- */
+  .music h2{ font-size:clamp(40px,6vw,64px); margin-bottom:40px; }
+  .link-cols{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .link-block .label{
+    font-family:'League Spartan',sans-serif;
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:18px;
+    display:block;
+  }
+  .link-list{ list-style:none; margin:0; padding:0; }
+  .link-list li{ border-bottom:1px solid var(--hair); }
+  .link-list a{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 2px;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:400;
+    transition:padding-left .25s ease, color .25s ease;
+  }
+  .link-list a:hover{ padding-left:10px; color:var(--accent); }
+  .link-list a .arrow{ font-family:'League Spartan',sans-serif; opacity:.5; }
+
+  /* ---------- booking ---------- */
+  .booking{ text-align:center; }
+  .booking h2{ font-size:clamp(40px,7vw,80px); margin-bottom:26px; }
+  .booking p.lead{ color:var(--text-dim); font-size:16px; margin-bottom:40px; }
+  .booking-contact{
+    display:inline-flex;
+    flex-direction:column;
+    gap:14px;
+    font-size:18px;
+  }
+  .booking-contact a{ text-decoration:none; }
+  .booking-contact a:hover{ color:var(--accent); }
+  footer{
+    text-align:center;
+    padding:60px 24px 50px;
+    color:var(--text-dim);
+    font-family:'League Spartan',sans-serif;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.94);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    padding:40px;
+    cursor:zoom-out;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{
+    max-width:90vw;
+    max-height:90vh;
+    width:auto; height:auto;
+    object-fit:contain;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+  }
+  .lightbox-close{
+    position:absolute; top:24px; right:30px;
+    color:#fff; font-size:28px;
+    background:none; border:none; cursor:pointer;
+    font-family:'League Spartan',sans-serif;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .chapter{ padding:90px 22px; }
+    .two-col, .two-col.reverse{ grid-template-columns:1fr; gap:36px; }
+    .two-col .photo-col, .two-col.reverse .photo-col{ order:1; }
+    .two-col .text-col, .two-col.reverse .text-col{ order:2; }
+    .release-grid{ grid-template-columns:1fr; }
+    .link-cols{ grid-template-columns:1fr; gap:36px; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .chapter .num{ font-size:26vw; top:20px; }
+    .controls{ top:14px; right:14px; }
+    .ctrl-btn{ padding:8px 12px; font-size:10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <button class="ctrl-btn" id="langToggle" type="button">БГ</button>
+  <button class="ctrl-btn" id="themeToggle" type="button">Light</button>
+</div>
+
+<!-- ============ 1. COVER ============ -->
+<section class="cover">
+  <div class="photo-frame reveal" data-photo="0">
+    <img src="dj-01.jpg" alt="Zlatina Dimitrova" loading="eager">
+  </div>
+  <p class="eyebrow" data-en="DJ / Producer" data-bg="Диджей / Продуцент">DJ / Producer</p>
+  <h1>ZLATINA<br>DIMITROVA</h1>
+  <p class="genres" data-en="Tech House · Minimal Deep Tech · Jackin House" data-bg="Тех Хаус · Минимал Дийп Тех · Джакин Хаус">Tech House · Minimal Deep Tech · Jackin House</p>
+  <p class="scroll-cue" data-en="Scroll" data-bg="Скролни">Scroll</p>
+</section>
+
+<hr class="hair">
+
+<!-- ============ 2. ABOUT ============ -->
+<section class="chapter about">
+  <span class="num">02</span>
+  <div class="chapter-inner two-col">
+    <div class="photo-col">
+      <div class="photo-frame reveal" data-photo="1">
+        <img src="dj-02.jpg" alt="Zlatina Dimitrova — portrait" loading="lazy">
+      </div>
+    </div>
+    <div class="text-col reveal">
+      <p class="eyebrow" data-en="About" data-bg="За нея">About</p>
+      <h2 data-en="A sound built on groove" data-bg="Звук, изграден върху грув">A sound built on groove</h2>
+      <p data-en="Zlatina Dimitrova is a House DJ and producer driven by a passion for electronic music since 2006. With a refined musical taste and a deep understanding of groove, she delivers dynamic performances built around powerful rhythms, infectious energy, and a strong connection with the crowd."
+         data-bg="Златина Димитрова е Хаус диджей и продуцент, движена от страст към електронната музика от 2006 г. насам. С изтънчен музикален вкус и дълбоко разбиране за груув, тя поднася динамични изпълнения, изградени около мощни ритми, заразителна енергия и силна връзка с публиката.">
+        Zlatina Dimitrova is a House DJ and producer driven by a passion for electronic music since 2006. With a refined musical taste and a deep understanding of groove, she delivers dynamic performances built around powerful rhythms, infectious energy, and a strong connection with the crowd.
+      </p>
+      <p data-en="Her sound explores the worlds of Tech House, Minimal Deep Tech, and Jackin House, blending driving basslines, hypnotic grooves, and carefully selected sounds into memorable club experiences."
+         data-bg="Звукът ѝ изследва света на Тех Хаус, Минимал Дийп Тех и Джакин Хаус, съчетавайки настойчиви баслинии, хипнотични груувове и внимателно подбрани звуци в незабравими клубни изживявания.">
+        Her sound explores the worlds of Tech House, Minimal Deep Tech, and Jackin House, blending driving basslines, hypnotic grooves, and carefully selected sounds into memorable club experiences.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="hair">
+
+<!-- ============ 3. CAREER HIGHLIGHTS ============ -->
+<section class="chapter highlights">
+  <span class="num">03</span>
+  <div class="chapter-inner two-col reverse">
+    <div class="photo-col">
+      <div class="photo-frame reveal" data-photo="2">
+        <img src="dj-03.jpg" alt="Zlatina Dimitrova — behind the decks" loading="lazy">
+      </div>
+    </div>
+    <div class="text-col reveal">
+      <p class="eyebrow" data-en="Career Highlights" data-bg="Кариерни постижения">Career Highlights</p>
+      <h2 data-en="On the record" data-bg="На плочата">On the record</h2>
+      <ul class="hl-list">
+        <li><span class="mark">2006</span><span data-en="Active in electronic music since 2006" data-bg="Активна в електронната музика от 2006 г.">Active in electronic music since 2006</span></li>
+        <li><span class="mark">→</span><span data-en="Official releases on <strong>DFRNT MINDSET</strong> and <strong>1980 Recordings</strong>" data-bg="Официални издания за <strong>DFRNT MINDSET</strong> и <strong>1980 Recordings</strong>">Official releases on <strong>DFRNT MINDSET</strong> and <strong>1980 Recordings</strong></span></li>
+        <li><span class="mark">#28</span><span data-en="&quot;Always The First One&quot; reached #28 on the Beatport Hype Chart" data-bg="&quot;Always The First One&quot; достигна #28 в Beatport Hype Chart">"Always The First One" reached #28 on the Beatport Hype Chart</span></li>
+        <li><span class="mark">→</span><span data-en="Featured at <strong>AIFestival</strong>" data-bg="Участие в <strong>AIFestival</strong>">Featured at <strong>AIFestival</strong></span></li>
+        <li><span class="mark">→</span><span data-en="Performances at <strong>Over Tech</strong> and <strong>DanceTrippin</strong>" data-bg="Изпълнения за <strong>Over Tech</strong> и <strong>DanceTrippin</strong>">Performances at <strong>Over Tech</strong> and <strong>DanceTrippin</strong></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="hair">
+
+<!-- ============ 4. SELECTED RELEASES ============ -->
+<section class="chapter releases">
+  <span class="num">04</span>
+  <div class="chapter-inner">
+    <p class="eyebrow" data-en="Selected Releases" data-bg="Избрани издания">Selected Releases</p>
+    <h2 data-en="Latest music" data-bg="Последна музика">Latest music</h2>
+    <div class="release-grid">
+      <div class="release-card">
+        <span class="label" data-en="Single" data-bg="Сингъл">Single</span>
+        <h3>Always The First One</h3>
+        <div class="meta">
+          <div data-en="Label: DFRNT MINDSET" data-bg="Лейбъл: DFRNT MINDSET">Label: DFRNT MINDSET</div>
+          <div data-en="Released: 2024" data-bg="Издаден: 2024">Released: 2024</div>
+        </div>
+        <span class="chip" data-en="#28 Beatport Hype Chart" data-bg="#28 Beatport Hype Chart">#28 Beatport Hype Chart</span>
+      </div>
+      <div class="release-card">
+        <span class="label" data-en="Single" data-bg="Сингъл">Single</span>
+        <h3>Get Up Now</h3>
+        <div class="meta">
+          <div data-en="Label: 1980 Recordings" data-bg="Лейбъл: 1980 Recordings">Label: 1980 Recordings</div>
+          <div data-en="Released: 2025" data-bg="Издаден: 2025">Released: 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hair">
+
+<!-- ============ 5. FEATURED PERFORMANCES ============ -->
+<section class="chapter performances">
+  <span class="num">05</span>
+  <div class="chapter-inner two-col">
+    <div class="photo-col">
+      <div class="photo-frame reveal" data-photo="3">
+        <img src="dj-04.jpg" alt="Zlatina Dimitrova — live performance" loading="lazy">
+      </div>
+    </div>
+    <div class="text-col reveal">
+      <p class="eyebrow" data-en="Featured Performances" data-bg="Изявени изпълнения">Featured Performances</p>
+      <h2 data-en="On stage" data-bg="На сцена">On stage</h2>
+      <p data-en="From festival stages to underground floors, Zlatina's sets are built to move a room from the first bar to the last."
+         data-bg="От фестивални сцени до подземни клубове, сетовете на Златина са изградени да движат публиката от първия до последния такт.">
+        From festival stages to underground floors, Zlatina's sets are built to move a room from the first bar to the last.
+      </p>
+      <div class="perf-tags">
+        <span>AIFestival</span>
+        <span>Over Tech</span>
+        <span>DanceTrippin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hair">
+
+<!-- ============ 6. PRESS PHOTOS ============ -->
+<section class="chapter gallery">
+  <span class="num">06</span>
+  <div class="chapter-inner">
+    <p class="eyebrow" style="text-align:center;" data-en="Press Photos" data-bg="Пресс снимки">Press Photos</p>
+    <h2 data-en="Gallery" data-bg="Галерия">Gallery</h2>
+    <div class="gallery-grid">
+      <div class="photo-frame reveal" data-photo="4"><img src="dj-05.jpg" alt="Zlatina Dimitrova — press photo 1" loading="lazy"></div>
+      <div class="photo-frame reveal" data-photo="5"><img src="dj-06.jpg" alt="Zlatina Dimitrova — press photo 2" loading="lazy"></div>
+      <div class="photo-frame reveal" data-photo="6"><img src="dj-07.jpg" alt="Zlatina Dimitrova — press photo 3" loading="lazy"></div>
+      <div class="photo-frame reveal" data-photo="7"><img src="dj-08.jpg" alt="Zlatina Dimitrova — press photo 4" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="hair">
+
+<!-- ============ 7. MUSIC & SOCIALS ============ -->
+<section class="chapter music">
+  <span class="num">07</span>
+  <div class="chapter-inner">
+    <p class="eyebrow" data-en="Music &amp; Socials" data-bg="Музика и социални мрежи">Music &amp; Socials</p>
+    <h2 data-en="Listen &amp; follow" data-bg="Слушай и следвай">Listen &amp; follow</h2>
+    <div class="link-cols">
+      <div class="link-block">
+        <span class="label" data-en="Music" data-bg="Музика">Music</span>
+        <ul class="link-list">
+          <li><a href="https://www.beatport.com/artist/zlatina-dimitrova/1254199" target="_blank" rel="noopener">Beatport <span class="arrow">↗</span></a></li>
+          <li><a href="https://open.spotify.com/artist/58uaT3Js99EAfC4h4g8QOS" target="_blank" rel="noopener">Spotify <span class="arrow">↗</span></a></li>
+          <li><a href="https://on.soundcloud.com/qxY9KbvXY5BF10IOad" target="_blank" rel="noopener">SoundCloud <span class="arrow">↗</span></a></li>
+          <li><a href="https://youtube.com/@zlatinadimitrova7291" target="_blank" rel="noopener">YouTube <span class="arrow">↗</span></a></li>
+        </ul>
+      </div>
+      <div class="link-block">
+        <span class="label" data-en="Social Media" data-bg="Социални мрежи">Social Media</span>
+        <ul class="link-list">
+          <li><a href="https://www.instagram.com/zlatina_dimitrova" target="_blank" rel="noopener">Instagram <span class="arrow">↗</span></a></li>
+          <li><a href="https://www.facebook.com/share/1BLYSo7YEU/" target="_blank" rel="noopener">Facebook <span class="arrow">↗</span></a></li>
+          <li><a href="https://www.facebook.com/share/1BqVMDZi1g/" target="_blank" rel="noopener" data-en="Facebook Page" data-bg="Facebook страница">Facebook Page <span class="arrow">↗</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hair">
+
+<!-- ============ 8. BOOKING ============ -->
+<section class="chapter booking">
+  <span class="num">08</span>
+  <div class="chapter-inner two-col">
+    <div class="text-col reveal" style="text-align:left;">
+      <p class="eyebrow" data-en="Booking" data-bg="Резервации">Booking</p>
+      <h2 data-en="Let's work together" data-bg="Да работим заедно">Let's work together</h2>
+      <p class="lead" data-en="For bookings, collaborations, and press inquiries, reach out directly." data-bg="За резервации, съвместни проекти и медийни запитвания, свържете се директно.">
+        For bookings, collaborations, and press inquiries, reach out directly.
+      </p>
+      <div class="booking-contact">
+        <a href="mailto:zlatinadimitrovamusic@gmail.com">zlatinadimitrovamusic@gmail.com</a>
+        <a href="tel:+359895388775">+359 895 388 775</a>
+      </div>
+    </div>
+    <div class="photo-col">
+      <div class="photo-frame reveal" data-photo="8-alt">
+        <img src="dj-01.jpg" alt="Zlatina Dimitrova" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer data-en="Zlatina Dimitrova · DJ &amp; Producer" data-bg="Златина Димитрова · Диджей и Продуцент">Zlatina Dimitrova · DJ &amp; Producer</footer>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+(function(){
+  // ---------- theme toggle ----------
+  var themeBtn = document.getElementById('themeToggle');
+  var root = document.documentElement;
+  function applyTheme(t){
+    if(t === 'light'){ root.classList.add('light'); themeBtn.textContent = isBG() ? 'Тъмно' : 'Dark'; }
+    else { root.classList.remove('light'); themeBtn.textContent = isBG() ? 'Светло' : 'Light'; }
+  }
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem('zd-theme'); } catch(e){}
+  applyTheme(savedTheme || 'dark');
+  themeBtn.addEventListener('click', function(){
+    var next = root.classList.contains('light') ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem('zd-theme', next); } catch(e){}
+  });
+
+  // ---------- language toggle ----------
+  var langBtn = document.getElementById('langToggle');
+  function isBG(){ return root.getAttribute('lang') === 'bg'; }
+  function applyLang(lang){
+    var nodes = document.querySelectorAll('[data-en]');
+    nodes.forEach(function(el){
+      var val = lang === 'bg' ? el.getAttribute('data-bg') : el.getAttribute('data-en');
+      if(val !== null) el.innerHTML = val;
+    });
+    root.setAttribute('lang', lang);
+    langBtn.textContent = lang === 'bg' ? 'EN' : 'БГ';
+    applyTheme(root.classList.contains('light') ? 'light' : 'dark');
+  }
+  var savedLang = null;
+  try { savedLang = localStorage.getItem('zd-lang'); } catch(e){}
+  applyLang(savedLang || 'en');
+  langBtn.addEventListener('click', function(){
+    var next = isBG() ? 'en' : 'bg';
+    applyLang(next);
+    try { localStorage.setItem('zd-lang', next); } catch(e){}
+  });
+
+  // ---------- scroll reveal ----------
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // ---------- lightbox ----------
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.photo-frame img').forEach(function(img){
+    img.addEventListener('click', function(){
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+  function closeLightbox(){ lightbox.classList.remove('open'); lightboxImg.src=''; }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+
+</body>
+</html>
